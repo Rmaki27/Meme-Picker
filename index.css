@@ -2,7 +2,7 @@ html,
 body {
     margin: 0;
     font-family: 'Karla', sans-serif;
-    background-color: #219ebc;
+    /* background-color: #219ebc; */
 }
 
 /*typography*/
@@ -83,6 +83,7 @@ label {
 .highlight {
     background-color: #fff0ee;
     color: #bd301d;
+    accent-color: #bd301d;
     font-weight: bold;
 }
 
