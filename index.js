@@ -8,22 +8,33 @@ const getImageBtn = document.getElementById('get-image-btn')
 const gifsOnlyCheckbox = document.getElementById('gifs-only-option')
 const memeModalInner = document.getElementById('meme-modal-inner')
 const memeModal = document.getElementById('meme-modal')
+const memeModalClose = document.getElementById('meme-modal-close-btn')
 
 emotionRadios.addEventListener('change', highlightCheckedOption)
 getImageBtn.addEventListener("click", renderCat)
+memeModalClose.addEventListener("click", closeModal)
+
+function closeModal() {
+    memeModal.style.display = "none"
+}
 
 function getMatchingCatsArray() {
-    const selectedEmotion = document.querySelector('input[type="radio"]:checked')
-    const isGifChecked = gifsOnlyCheckbox.checked
-    const matchingCatsArray = catsData.filter(function (cat) {
-        if (isGifChecked) {
-            return cat.emotionTags.includes(selectedEmotion.value) && cat.isGif
-        }
-        else {
-            return cat.emotionTags.includes(selectedEmotion.value)
-        }
-    })
-    return matchingCatsArray
+    if (document.querySelector('input[type="radio"]:checked')) {
+        const selectedEmotion = document.querySelector('input[type="radio"]:checked').value
+        const isGifChecked = gifsOnlyCheckbox.checked
+
+        const matchingCatsArray = catsData.filter(function (cat) {
+            console.log(isGifChecked)
+            if (isGifChecked) {
+                return cat.emotionTags.includes(selectedEmotion) && cat.isGif
+            }
+
+            else {
+                return cat.emotionTags.includes(selectedEmotion)
+            }
+        })
+        return matchingCatsArray
+    }
 }
 
 function getSingleCatObject() {
