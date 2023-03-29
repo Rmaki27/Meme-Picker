@@ -6,6 +6,8 @@ const emotionRadios = document.getElementById('emotion-radios')
 const radios = document.getElementsByClassName('radio')
 const getImageBtn = document.getElementById('get-image-btn')
 const gifsOnlyCheckbox = document.getElementById('gifs-only-option')
+const memeModalInner = document.getElementById('meme-modal-inner')
+const memeModal = document.getElementById('meme-modal')
 
 emotionRadios.addEventListener('change', highlightCheckedOption)
 getImageBtn.addEventListener("click", renderCat)
@@ -27,7 +29,11 @@ function getMatchingCatsArray() {
 function getSingleCatObject() {
     const catsArray = getMatchingCatsArray()
     if (catsArray.length === 1) {
-        console.log(catsArray[0])
+        return catsArray[0]
+    }
+    else {
+        const randomIndex = Math.floor(Math.random() * catsArray.length)
+        return catsArray[randomIndex]
     }
 }
 
