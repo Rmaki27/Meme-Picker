@@ -38,7 +38,12 @@ function getSingleCatObject() {
 }
 
 function renderCat() {
-    getSingleCatObject()
+    const catObject = getSingleCatObject()
+    memeModalInner.innerHTML = `<img 
+    class="cat-img"
+    src="./images/${catObject.image}"
+    alt="${catObject.alt}">`
+    memeModal.style.display = 'flex'
 }
 
 
@@ -62,14 +67,14 @@ function getEmotionsArray(cats) {
 
 
 function renderEmotionRadios(cats) {
-    const emotions = getEmotionsArray(cats)
     let radioItems = ``
+    const emotions = getEmotionsArray(cats)
     for (let emotion of emotions) {
         radioItems += `
         <div class="radio">
             <label for="${emotion}">${emotion}</label>
-            <input type="radio" id="${emotion}" name="emotions" value="${emotion}" />
-        </div>`
+            <input type="radio" id="${emotion}" name="emotions" value="${emotion}"> 
+        </div> `
     }
     emotionRadios.innerHTML = radioItems
 }
