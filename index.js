@@ -1,7 +1,5 @@
 import { catsData } from "/data.js"
 
-const catsArray = []
-const emotionsArray = []
 const emotionRadios = document.getElementById('emotion-radios')
 const radios = document.getElementsByClassName('radio')
 const getImageBtn = document.getElementById('get-image-btn')
@@ -15,10 +13,10 @@ memeModalClose.addEventListener("click", closeModal)
 getImageBtn.addEventListener("click", renderCat)
 
 function highlightCheckedOption(e) {
-    for (let radio of radios) {
+    for (const radio of radios) {
         radio.classList.remove('highlight')
-        document.getElementById(e.target.id).parentElement.classList.add('highlight')
     }
+    document.getElementById(e.target.id).parentElement.classList.add('highlight')
 }
 
 function closeModal() {
@@ -26,32 +24,33 @@ function closeModal() {
 }
 
 function renderCat() {
-    const catObject = getSingleCatObject()
+    // e.preventDefault()
+    const catObject = getSingleCat()
     memeModalInner.innerHTML = `<img 
     class="cat-img"
     src="./images/${catObject.image}"
     alt="${catObject.alt}">`
-    memeModal.style.display = 'flex'
+    memeModal.style.display = 'block'
 }
 
-function getSingleCatObject() {
-    const catsArray = getMatchingCatsArray()
-    if (catsArray.length === 1) {
-        return catsArray[0]
+function getSingleCat() {
+    const cats = getMatchingCats()
+    if (cats.length === 1) {
+        return cats[0]
     }
     else {
-        const randomIndex = Math.floor(Math.random() * catsArray.length)
-        return catsArray[randomIndex]
+        const randomIndex = Math.floor(Math.random() * cats.length)
+        return cats[randomIndex]
     }
 }
 
-function getMatchingCatsArray() {
-    if (document.querySelector('input[type="radio"]:checked')) {
+function getMatchingCats() {
+    const checkedElement = document.querySelector('input[type="radio"]:checked')
+    if (checkedElement) {
         const selectedEmotion = document.querySelector('input[type="radio"]:checked').value
         const isGifChecked = gifsOnlyCheckbox.checked
 
-        const matchingCatsArray = catsData.filter(function (cat) {
-            console.log(isGifChecked)
+        const matchingCats = catsData.filter(function (cat) {
             if (isGifChecked) {
                 return cat.emotionTags.includes(selectedEmotion) && cat.isGif
             }
@@ -60,13 +59,14 @@ function getMatchingCatsArray() {
                 return cat.emotionTags.includes(selectedEmotion)
             }
         })
-        return matchingCatsArray
+        return matchingCats
     }
 }
 
 
 function getEmotionsArray(cats) {
-    for (let cat of cats) {
+    const emotionsArray = []
+    for (const cat of cats) {
         for (let emotion of cat.emotionTags) {
             if (!emotionsArray.includes(emotion)) {
                 emotionsArray.push(emotion)

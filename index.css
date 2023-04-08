@@ -2,7 +2,7 @@ html,
 body {
     margin: 0;
     font-family: 'Karla', sans-serif;
-    background-color: #219ebc;
+    /* background-color: #219ebc; */
 }
 
 /*typography*/
@@ -27,7 +27,7 @@ h2 {
     font-size: 16px;
 }
 
-h3 {
+.input-prompt {
     margin: 25px;
 }
 
@@ -40,6 +40,7 @@ header {
 .header-inner {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 0 auto;
     width: 370px;
     gap: 15px;
@@ -103,7 +104,7 @@ input[type="radio"] {
 }
 
 .gifs-check-label {
-    width: unset;
+    width: auto;
     margin-right: 5px;
 }
 
@@ -121,18 +122,16 @@ input[type="radio"] {
 
 .meme-modal {
     display: none;
-    /*flex when displayed*/
+    /*block when displayed*/
     position: fixed;
     margin: auto;
     top: 80px;
     left: 0;
     right: 0;
-    align-items: center;
-    justify-content: center;
     border: 1px solid #67595e;
     border-radius: 5px;
-    width: 420px;
-    height: 490px;
+    width: fit-content;
+    padding: 50px;
     background-color: #fff0ee;
 }
 
@@ -140,6 +139,7 @@ input[type="radio"] {
     max-width: 340px;
     max-height: 420px;
     border-radius: 5px;
+    /* padding: 40px; */
 }
 
 .meme-modal-close-btn {
